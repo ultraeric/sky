@@ -2,7 +2,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Grid, Row, Col} from 'react-bootstrap';
 import {NavBar} from 'NavBar';
-import {FriendPage} from 'Pages';
+import {PageContainer} from 'PageContainer';
+import io from 'socket.io-client';
 
 class Main extends React.Component {
   constructor() {
@@ -15,9 +16,12 @@ class Main extends React.Component {
         'Friends',
         'Tips'
       ]
-    }
+    };
     this.changePage = this.changePage.bind(this);
     this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
+  }
+
+  componentDidMount() {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -39,7 +43,7 @@ class Main extends React.Component {
           </Col>
           <Col xs={6} md={8}>
             <h1>{this.state.pageNames[this.state.activePageKey]}</h1>
-            <FriendPage></FriendPage>
+            <PageContainer pageName={this.state.pageNames[this.state.activePageKey]}></PageContainer>
             </Col>
           <Col xs={3} md={2}></Col>
         </Row>
